@@ -53,7 +53,7 @@ function endGame(draw) {
     if (draw) {
         winningMessageTextElement.innerText = 'Empate!'
     } else {
-        winningMessageTextElement.innerText = `${circleTurn ? "Circulo" : "X"} Ganhou!`
+        winningMessageTextElement.innerText = `${circleTurn ? "Círculo" : "X"} Ganhou!`
 
         if (circleTurn) {
             var addCircle = parseInt(document.getElementById('circleCount').innerHTML);
