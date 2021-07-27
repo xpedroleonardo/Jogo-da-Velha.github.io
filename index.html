@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jogo da Velha</title>
-    <link rel="stylesheet" href="./assets/css/styles.css">
-</head>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
 
-<body>
-    <div class="board" id="board">
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
+  <body>
+    <aside class="x-count">
+      <div class="cell x icon"></div>
+      <h3 id="xCount"></h3>
+    </aside>
+
+    <main>
+      <div class="board" id="board">
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+      </div>
+      <div class="reset">
+        <button id="resetButton">Resetar pontuação</button>
+      </div>
+    </main>
+
+    <aside class="circle-count">
+      <div class="cell circle icon" id="icon-circle"></div>
+      <h3 id="circleCount"></h3>
+    </aside>
+
+    <div id="winningContainer">
+      <h2 id="message"></h2>
+      <button id="restartButton">Jogar novamente</button>
     </div>
 
-    <div class="count">
-        <div class="x-count">
-            <div class="cell x icon"></div>
-            <h3><span id="xCount">0</span></h3>
-        </div>
-
-        <div class="circle-count">
-            <div class="cell circle icon" id="icon-circle"></div>
-            <h3><span id="circleCount">0</span></h3>
-        </div>
-    </div>
-
-    <div class="winning-message" id="winningMessage">
-        <div data-winning-message-text></div>
-        <button id="restartButton">Jogar Novamente</button>
-    </div>
-
-    <script src="./assets/js/scripts.js"></script>
-</body>
-
+    <script src="/assets/js/scripts.js"></script>
+  </body>
 </html>

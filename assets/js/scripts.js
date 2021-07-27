@@ -1,103 +1,127 @@
-const X = 'x'
-const CIRCLE = 'circle'
-const WINNING_COMBINATIONS = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-]
-const cellElements = document.querySelectorAll('[data-cell]')
-const board = document.getElementById('board')
-const winningMessageElement = document.getElementById('winningMessage')
-const restartButton = document.getElementById('restartButton')
-const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
-let circleTurn
-let xCount = document.getElementById('xCount').innerHTML
-let circleCount = document.getElementById('circleCount').innerHTML
+const classX = "x";
+const classC = "circle";
+const Combinations = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];
 
-startGame()
+let Turn = false;
+const xCount = document.getElementById("xCount");
+const circleCount = document.getElementById("circleCount");
 
-restartButton.addEventListener('click', startGame)
+const resetCount = document.getElementById("resetButton");
+
+const cellElements = document.querySelectorAll(".empty");
+const board = document.getElementById("board");
+const restartButton = document.getElementById("restartButton");
+
+const winningContainer = document.getElementById("winningContainer");
+const message = document.getElementById("message");
+
+getValue("all");
+startGame();
+
+restartButton.addEventListener("click", startGame);
+resetCount.addEventListener("click", reset);
 
 function startGame() {
-    circleTurn = false
-    cellElements.forEach(cell => {
-        cell.classList.remove(X)
-        cell.classList.remove(CIRCLE)
-        cell.removeEventListener('click', handleClick)
-        cell.addEventListener('click', handleClick, { once: true })
-    })
-    setBoardHoverClass()
-    winningMessageElement.classList.remove('show')
+  cellElements.forEach((cell) => {
+    cell.classList.remove(classX);
+    cell.classList.remove(classC);
+    cell.removeEventListener("click", handleClick);
+    cell.addEventListener("click", handleClick, { once: true });
+  });
+  setBoardHoverClass();
+  winningContainer.classList.remove("show");
 }
 
 function handleClick(e) {
-    const cell = e.target
-    const currentClass = circleTurn ? CIRCLE : X
-    placeMark(cell, currentClass)
-    if (checkWin(currentClass)) {
-        endGame(false)
-    } else if (isDraw()) {
-        endGame(true)
-    } else {
-        swapTurns()
-        setBoardHoverClass()
-    }
+  const cell = e.target;
+  const currentClass = Turn ? classC : classX;
+  placeMark(cell, currentClass);
+
+  if (checkWin(currentClass)) {
+    endGame(false);
+  } else if (isDraw()) {
+    endGame(true);
+  } else {
+    swapTurns();
+    setBoardHoverClass();
+  }
 }
 
 function endGame(draw) {
-    if (draw) {
-        winningMessageTextElement.innerText = 'Empate!'
+  if (draw) {
+    message.innerText = "Empate!";
+  } else {
+    message.innerText = `${Turn ? "Círculo" : "X"} ganhou!`;
+
+    if (Turn) {
+      let circle = Number(circleCount.innerHTML);
+      circle += 1;
+      localStorage.setItem("JDV-circle", JSON.stringify(circle));
+      getValue("circle");
     } else {
-        winningMessageTextElement.innerText = `${circleTurn ? "Círculo" : "X"} Ganhou!`
-
-        if (circleTurn) {
-            var addCircle = parseInt(document.getElementById('circleCount').innerHTML);
-            addCircle = addCircle + 1;
-            document.getElementById('circleCount').innerHTML = addCircle;
-        } else {
-            var addX = parseInt(document.getElementById('xCount').innerHTML);
-            addX = addX + 1;
-            document.getElementById('xCount').innerHTML = addX;
-        }
-
+      let x = Number(xCount.innerHTML);
+      x += 1;
+      localStorage.setItem("JDV-x", JSON.stringify(x));
+      getValue("x");
     }
-    winningMessageElement.classList.add('show')
-
+  }
+  Turn = Turn ? false : true;
+  winningContainer.classList.add("show");
 }
 
 function isDraw() {
-    return [...cellElements].every(cell => {
-        return cell.classList.contains(X) || cell.classList.contains(CIRCLE)
-    })
+  return [...cellElements].every((cell) => {
+    return cell.classList.contains(classX) || cell.classList.contains(classC);
+  });
 }
 
 function placeMark(cell, currentClass) {
-    cell.classList.add(currentClass)
+  cell.classList.add(currentClass);
 }
 
 function swapTurns() {
-    circleTurn = !circleTurn
+  Turn = !Turn;
 }
 
 function setBoardHoverClass() {
-    board.classList.remove(X)
-    board.classList.remove(CIRCLE)
-    if (circleTurn) {
-        board.classList.add(CIRCLE)
-    } else {
-        board.classList.add(X)
-    }
+  board.classList.remove(classX);
+  board.classList.remove(classC);
+  if (Turn) {
+    board.classList.add(classC);
+  } else {
+    board.classList.add(classX);
+  }
 }
 
 function checkWin(currentClass) {
-    return WINNING_COMBINATIONS.some(combination => {
-        return combination.every(index => {
-            return cellElements[index].classList.contains(currentClass)
-        })
-    })
+  return Combinations.some((combination) => {
+    return combination.every((index) => {
+      return cellElements[index].classList.contains(currentClass);
+    });
+  });
+}
+
+function getValue(cell) {
+  if (cell == "circle" || cell == "all") {
+    circleCount.innerHTML = JSON.parse(localStorage.getItem("JDV-circle")) || 0;
+  }
+
+  if (cell == "x" || cell == "all") {
+    xCount.innerHTML = JSON.parse(localStorage.getItem("JDV-x")) || 0;
+  }
+}
+
+function reset() {
+  localStorage.setItem("JDV-circle", "0");
+  localStorage.setItem("JDV-x", "0");
+  getValue("all");
 }
