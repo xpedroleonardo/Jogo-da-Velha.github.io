@@ -1,43 +1,30 @@
-## # Jogo da Velha
+<h1 align="center">
+    <img alt="Jogo da Velha" src="/assets/img/README.png" />
+</h1>
 
-<div align="center" >
-    <img style="width: 80%;" src="./assets/image/README.gif">
-</div>
+## 🧪 Tecnologias
 
-## 📑 Sobre
-
-Aplicação web do Jogo da Velha com contador de pontos.
-
-## 👨‍💻 Tecnologias 
-
-O projeto foi desenvolvido utilizando
+Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - HTML
 - CSS
 - JavaScript
 
+## 🚀 Como executar
 
-## ⬇ Como baixar o projeto
+Abra o arquivo index.html em seu navegador de preferência, e explore o projeto.
 
-```bash
+## 💻 Projeto
 
-    #Clonar o Repositório (Via Terminal)
-    $ git clone https://github.com/xpedroleonardo/Jogo-da-Velha.git
+Jogo da velha é um projeto para você se divertir, passar o tempo e salvar a pontuação dos jogos realizados.
 
-    #Ou
+- Tema do projeto baseado na sua preferencia (Dark/Light)
+- Pontuação salva no localStorage
 
-    #Botão verde acima (Zip)
-    Baixar projeto compactado
+## 📝 License
 
-```
-
-
-## 🚀 Como executar o projeto
-
-Após baixar o projeto, entre na pasta e abra o arquivo index.html com o navegador e divirta-se.
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ---
 
-### 💻 Feito por [Pedro Leonardo](https://github.com/xpedroleonardo). 
-
-### Gostou do projeto ? De uma estrela ⭐
+Feito com ❤ by [Pedro Leonardo](https://github.com/xpedroleonardo)
