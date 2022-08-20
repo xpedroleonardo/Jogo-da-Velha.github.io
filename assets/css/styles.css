@@ -9,6 +9,11 @@
 :root {
   --cell-size: 150px;
   --mark-size: calc(var(--cell-size) * 0.55);
+
+  --background: #f8f8f8;
+  --primary: #00afb9;
+  --secondary: #f07167;
+  --counter: #000;
 }
 
 body,
@@ -213,7 +218,7 @@ body {
     --counter: #fff;
   }
 } */
-
+/* 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #f8f8f8;
@@ -221,4 +226,4 @@ body {
     --secondary: #f07167;
     --counter: #000;
   }
-}
+} */
